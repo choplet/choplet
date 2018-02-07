@@ -34,6 +34,8 @@ def convert(expr):
     while stoper:
         stnum.append(stoper.pop())
     return ' '.join(stnum)
+
+print(convert('3 + 4 * 2 / (1 - 5) ^ 2'))
    
 
 
