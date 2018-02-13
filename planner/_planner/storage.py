@@ -3,9 +3,9 @@ import sqlite3
 
 SQL_SELECT_ALL  = '''
 
-	SELECT 
+	SELECT
 		id, created, task, category, deadline
-	FROM 
+	FROM
 		planner
 
 '''
@@ -67,9 +67,8 @@ def add(conn, task, category, deadline):
 
 		cursor = conn.execute(SQL_INSERT_TASK,(task, category, deadline)) #если не нашли - вот так
 
-		pk = cursor.lastrowid # последний вставленный идентификатор
-		id = pk
-		conn.execute(SQL_UPDATE_TASK, (task, id))
+# последний вставленный идентификатор
+
 	#return short_url
 
 
@@ -104,5 +103,3 @@ def find_by_category(conn, category):
 #		conn.executescript(f.read())
 
 #def add_task()
-
-
