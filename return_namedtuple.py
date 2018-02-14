@@ -23,8 +23,8 @@ def hello():
     return ("hello habr","hello")
 
 print (hello())
-'''
 
+'''
 
 
 
