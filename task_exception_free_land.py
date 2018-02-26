@@ -1,14 +1,15 @@
 import math
 
 def get_free_land(land, grya):
+    LAND_S = int(land[0] * 100)
+    GRYA_S = grya[0] * grya[1]
+    LAND_SHIR0 = int(land[1][0])
+    LAND_DLIN0 = int(land[1][2])
+    X = math.sqrt(LAND_S / LAND_SHIR0 * LAND_DLIN0)
+    LAND_SHIR, LAND_DLIN = LAND_SHIR0 * X, LAND_DLIN0 * X
+    print(LAND_SHIR, LAND_DLIN)
 
-    X = math.sqrt(int(land[0]) * 100 / (int(land[1][0]) * int(land[1][2])))
-    LAND_SHIR = X * int(land[1][0])
-
-    LAND_DLIN = X * int(land[1][2])
-    S_LAND = land[0] * 100
-    S_GRYA = grya[0] * grya[1]
-    if (grya[0] > LAND_SHIR or grya[1] > LAND_DLIN) or S_LAND < S_GRYA :
+    if (grya[0] > LAND_SHIR or grya[1] > LAND_DLIN) or LAND_S < GRYA_S :
         if land[0] == 0:
                 raise ValueError('Не задана площадь участка')
         else:
@@ -21,6 +22,7 @@ def get_free_land(land, grya):
         non_shir = LAND_SHIR % grya[0]
 
         non_dlin = LAND_DLIN % grya[1]
-        ostatok = non_shir * grya[1] + non_dlin * grya[0]
+        ostatok = non_shir * LAND_SHIR + non_dlin * (LAND_DLIN - non_shir)
+    return ostatok, non_shir, non_dlin
 
-    return ostatok
+print(get_free_land((100, "1:1"),(15, 25)))
