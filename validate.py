@@ -12,7 +12,7 @@ class Validator(metaclass = ABCMeta):
     types = {}
 
     def __init__(self,data):
-        self.source = data
+        self.data = data
 
     @abstractmethod
     def validate(self,data):
@@ -76,8 +76,8 @@ class DateTimeValidator(Validator):
         return is_valid
 
 
-Validator.add_type("", EmailValidator)
-#Validator.add_type("date",DateTimeValidator)
+Validator.add_type("email", EmailValidator)
+Validator.add_type("date", DateTimeValidator)
 
 #validator = Validator.get_instance("mail")
 #print(validator.validate("info@itmo-it.org"))
